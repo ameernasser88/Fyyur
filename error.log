@@ -1,1 +1,197 @@
 
+2020-09-14 17:10:43,410 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:513]
+2020-09-14 17:11:20,935 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:513]
+2020-09-14 17:11:41,676 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:513]
+2020-09-14 17:58:26,622 INFO: errors [in app.py:514]
+2020-09-14 17:58:55,671 ERROR: Exception on /venues/create [GET] [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 224, in create_venue_form
+    form = VenueForm()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\form.py", line 157, in __init__
+    super(Form, self).__init__(*args, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\form.py", line 87, in __init__
+    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 274, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 131, in process
+    field.process(formdata)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\csrf\core.py", line 43, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 139, in generate_csrf_token
+    return generate_csrf(
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 33, in generate_csrf
+    secret_key = _get_config(
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 128, in _get_config
+    raise RuntimeError(message)
+RuntimeError: A secret key is required to use CSRF.
+2020-09-14 17:59:00,423 ERROR: Exception on /venues/create [GET] [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 224, in create_venue_form
+    form = VenueForm()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\form.py", line 157, in __init__
+    super(Form, self).__init__(*args, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\form.py", line 87, in __init__
+    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 274, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 131, in process
+    field.process(formdata)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\csrf\core.py", line 43, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 139, in generate_csrf_token
+    return generate_csrf(
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 33, in generate_csrf
+    secret_key = _get_config(
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 128, in _get_config
+    raise RuntimeError(message)
+RuntimeError: A secret key is required to use CSRF.
+2020-09-14 17:59:03,624 ERROR: Exception on /artists/create [GET] [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 417, in create_artist_form
+    form = ArtistForm()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\form.py", line 157, in __init__
+    super(Form, self).__init__(*args, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\form.py", line 87, in __init__
+    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 274, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 131, in process
+    field.process(formdata)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\csrf\core.py", line 43, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 139, in generate_csrf_token
+    return generate_csrf(
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 33, in generate_csrf
+    secret_key = _get_config(
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 128, in _get_config
+    raise RuntimeError(message)
+RuntimeError: A secret key is required to use CSRF.
+2020-09-14 18:00:17,243 ERROR: Exception on /artists/create [GET] [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 417, in create_artist_form
+    form = ArtistForm()
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\form.py", line 157, in __init__
+    super(Form, self).__init__(*args, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\form.py", line 87, in __init__
+    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 274, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\form.py", line 131, in process
+    field.process(formdata)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\wtforms\csrf\core.py", line 43, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 139, in generate_csrf_token
+    return generate_csrf(
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 33, in generate_csrf
+    secret_key = _get_config(
+  File "C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\env\lib\site-packages\flask_wtf\csrf.py", line 128, in _get_config
+    raise RuntimeError(message)
+RuntimeError: A secret key is required to use CSRF.
+2020-09-14 20:00:01,633 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:522]
+2020-09-14 20:00:01,779 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:522]
+2020-09-14 20:00:24,935 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:522]
+2020-09-14 20:14:36,941 INFO: errors [in app.py:522]
+2020-09-14 20:15:31,210 INFO: errors [in app.py:522]
+2020-09-14 20:22:25,933 INFO: errors [in app.py:531]
+2020-09-14 20:22:27,183 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:531]
+2020-09-14 20:24:01,895 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:532]
+2020-09-14 20:24:53,032 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:532]
+2020-09-14 20:25:48,234 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:531]
+2020-09-14 20:26:17,676 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:531]
+2020-09-14 20:27:14,558 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:531]
+2020-09-14 20:28:06,116 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:531]
+2020-09-14 20:43:53,219 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:531]
+2020-09-14 20:44:39,017 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:531]
+2020-09-14 21:04:11,459 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:541]
+2020-09-14 21:04:18,951 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:541]
+2020-09-14 21:04:57,723 INFO: errors [in app.py:541]
+2020-09-14 21:04:59,090 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:541]
+2020-09-14 21:06:59,277 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:540]
+2020-09-14 21:08:28,951 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:539]
+2020-09-14 21:08:55,902 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:539]
+2020-09-14 21:09:17,589 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:540]
+2020-09-14 21:17:38,772 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:541]
+2020-09-14 21:18:07,692 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:542]
+2020-09-14 21:23:13,254 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:543]
+2020-09-14 21:25:29,960 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:543]
+2020-09-14 21:25:52,482 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:543]
+2020-09-14 21:26:07,800 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:543]
+2020-09-14 21:26:52,175 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:543]
+2020-09-14 21:27:18,498 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:543]
+2020-09-14 21:27:22,929 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:543]
+2020-09-14 21:27:43,332 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:543]
+2020-09-14 21:28:24,413 INFO: errors [in app.py:543]
+2020-09-14 21:28:25,680 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:543]
+2020-09-14 21:30:12,005 INFO: errors [in app.py:540]
+2020-09-14 21:30:13,507 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:540]
+2020-09-14 21:33:25,297 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:542]
+2020-09-14 21:35:14,719 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:543]
+2020-09-14 21:35:38,489 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:543]
+2020-09-14 21:47:18,365 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:550]
+2020-09-14 21:48:13,044 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:550]
+2020-09-14 21:53:17,918 INFO: errors [in app.py:558]
+2020-09-14 21:53:19,038 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:558]
+2020-09-14 21:54:09,919 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:554]
+2020-09-14 21:57:48,356 INFO: errors [in app.py:560]
+2020-09-14 21:57:49,643 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:560]
+2020-09-14 21:58:09,478 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:560]
+2020-09-14 21:58:15,655 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:560]
+2020-09-14 21:58:20,709 INFO: errors [in app.py:560]
+2020-09-14 21:58:21,818 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:560]
+2020-09-14 22:00:16,535 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:560]

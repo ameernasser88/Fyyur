@@ -76,6 +76,9 @@ class Genre(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String)
 
+  def __repr__(self):
+    return self.name
+
 
 
 
@@ -266,6 +269,7 @@ def create_venue_submission():
   error = False
   try:
     form = VenueForm(request.form)
+    print(form.data['seeking_talent'])
     new_venue = Venue(name=form.data['name']
                       , city=form.data['city']
                       , state=form.data['state']
@@ -273,6 +277,9 @@ def create_venue_submission():
                       , facebook_link=form.data['facebook_link']
                       , phone= form.data['phone']
                       , image_link= form.data['image_link']
+                      , website=form.data['website']
+                      , seeking_talent= form.data['seeking_talent']
+                      , seeking_description= form.data['seeking_description']
                       )
     genres = []
     for genre_id in form.data['genres']:

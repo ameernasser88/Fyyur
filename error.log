@@ -220,3 +220,6 @@ RuntimeError: A secret key is required to use CSRF.
 2020-09-17 21:08:54,934 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:569]
 2020-09-17 21:09:27,921 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:569]
 2020-09-17 21:17:17,666 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:570]
+2020-09-17 21:41:23,628 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:573]
+2020-09-17 21:41:30,842 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:573]
+2020-09-17 21:41:38,184 INFO: errors [in C:\Users\Ameer.Nasser88\PycharmProjects\Udacity Advanced Web\Projects\Fyyur\Fyyur\app.py:573]

@@ -53,6 +53,9 @@ class Venue(db.Model):
     phone = db.Column(db.String(120) , nullable=False)
     image_link = db.Column(db.String(500), nullable=True)
     facebook_link = db.Column(db.String(120),nullable=True)
+    website =  db.Column(db.String(120),nullable=True)
+    seeking_talent = db.Column(db.Boolean() , default=False , nullable=True)
+    seeking_description = db.Column(db.String(500), nullable=True)
     genres = db.relationship('Genre',secondary=venue_genres,backref=db.backref('venues' , lazy=True))
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate

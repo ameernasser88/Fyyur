@@ -115,7 +115,7 @@ app.jinja_env.filters['datetime'] = format_datetime
 def model_search(form , model):
   search_term = form.get('search_term', '')
   search_pattern = "%" + search_term + "%"
-  if model == 'Venuet':
+  if model == 'Venue':
     search_query = db.session.query(Venue).filter(Venue.name.ilike(search_pattern))
   else:
     search_query = db.session.query(Artist).filter(Artist.name.ilike(search_pattern))
@@ -180,7 +180,7 @@ def search_venues():
   # }
 
   response = model_search(form=request.form , model='Venue')
-  return render_template('pages/search_venues.html', results=response, search_term=search_term)
+  return render_template('pages/search_venues.html', results=response, search_term=request.form.get('search_term'))
 
 @app.route('/venues/<int:venue_id>')
 def show_venue(venue_id):

@@ -5,7 +5,7 @@
 import json
 import dateutil.parser
 import babel
-from flask import Flask, render_template, request, Response, flash, redirect, url_for
+from flask import Flask, render_template, request, Response, flash, redirect, url_for, abort
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 import logging
@@ -73,7 +73,7 @@ class Artist(db.Model):
     website = db.Column(db.String(120))
     seeking_venue = db.Column(db.Boolean(), default=False, nullable=True)
     seeking_description = db.Column(db.String(500), nullable=True)
-    genres = db.relationship('Genre', secondary=venue_genres, backref=db.backref('artists', lazy=True))
+    genres = db.relationship('Genre', secondary=artist_genres, backref=db.backref('artists', lazy=True))
 
 
 class Genre(db.Model):
@@ -248,6 +248,8 @@ def show_venue(venue_id):
     "upcoming_shows_count": 1,
   }
   data = Venue.query.get(venue_id)
+  if not data:
+    abort(404)
   # data = list(filter(lambda d: d['id'] == venue_id, [data1, data2, data3]))[0]
   return render_template('pages/show_venue.html', venue=data)
 
@@ -280,7 +282,6 @@ def create_venue_submission():
   error = False
   try:
     form = VenueForm(request.form)
-    print(form.data['seeking_talent'])
     new_venue = Venue(name=form.data['name']
                       , city=form.data['city']
                       , state=form.data['state']
@@ -429,7 +430,10 @@ def show_artist(artist_id):
     "past_shows_count": 0,
     "upcoming_shows_count": 3,
   }
-  data = list(filter(lambda d: d['id'] == artist_id, [data1, data2, data3]))[0]
+  data = Artist.query.get(artist_id)
+  if not data:
+    abort(404)
+  # data = list(filter(lambda d: d['id'] == artist_id, [data1, data2, data3]))[0]
   return render_template('pages/show_artist.html', artist=data)
 
 #  Update
@@ -492,6 +496,23 @@ def edit_venue_submission(venue_id):
 @app.route('/artists/create', methods=['GET'])
 def create_artist_form():
   form = ArtistForm()
+  genres = Genre.query.all()
+  count = Genre.query.count()
+  if count == 0:
+    genres_list = ['Alternative', 'Blues', 'Classical', 'Country', 'Electronic', 'Folk', 'Funk', 'Hip-Hop',
+                   'Heavy Metal', 'Instrumental', 'Jazz', 'Musical Theatre', 'Pop', 'Punk', 'R&B', 'Reggae',
+                   'Rock n Roll', 'Soul', 'Other']
+    for genre in genres_list:
+      temp = Genre(name=genre)
+      db.session.add(temp)
+    db.session.commit()
+    genres = Genre.query.all()
+    count = Genre.query.count()
+
+  list_of_genres = []
+  for i in range(0, count):
+    list_of_genres.append((genres[i].id, genres[i].name))
+  form.genres.choices = list_of_genres
   return render_template('forms/new_artist.html', form=form)
 
 @app.route('/artists/create', methods=['POST'])
@@ -499,11 +520,39 @@ def create_artist_submission():
   # called upon submitting the new artist listing form
   # TODO: insert form data as a new Venue record in the db, instead
   # TODO: modify data to be the data object returned from db insertion
+  error = False
+  try:
+    form = ArtistForm(request.form)
+    new_artist = Artist(name=form.data['name']
+                      , city=form.data['city']
+                      , state=form.data['state']
+                      , facebook_link=form.data['facebook_link']
+                      , phone=form.data['phone']
+                      , image_link=form.data['image_link']
+                      , website=form.data['website']
+                      , seeking_venue=form.data['seeking_venue']
+                      , seeking_description=form.data['seeking_description']
+                      )
+    genres = []
+    for genre_id in form.data['genres']:
+      genres.append(Genre.query.get(genre_id))
 
-  # on successful db insert, flash success
-  flash('Artist ' + request.form['name'] + ' was successfully listed!')
-  # TODO: on unsuccessful db insert, flash an error instead.
-  # e.g., flash('An error occurred. Artist ' + data.name + ' could not be listed.')
+    new_artist.genres = genres
+    db.session.add(new_artist)
+    db.session.commit()
+    # on successful db insert, flash success
+    flash('Artist ' + request.form['name'] + ' was successfully listed!')
+  except:
+    error = True
+    db.session.rollback()
+    # TODO: on unsuccessful db insert, flash an error instead.
+    flash('An error occurred. Artist ' + request.form['name'] + ' could not be listed.')
+  finally:
+    db.session.close()
+
+
+
+
   return render_template('pages/home.html')
 
 

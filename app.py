@@ -58,6 +58,9 @@ class Venue(db.Model):
     seeking_description = db.Column(db.String(500), nullable=True)
     genres = db.relationship('Genre',secondary=venue_genres,backref=db.backref('venues' , lazy=True))
 
+    def __repr__(self):
+      return self.name
+
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
 class Artist(db.Model):
@@ -74,6 +77,9 @@ class Artist(db.Model):
     seeking_venue = db.Column(db.Boolean(), default=False, nullable=True)
     seeking_description = db.Column(db.String(500), nullable=True)
     genres = db.relationship('Genre', secondary=artist_genres, backref=db.backref('artists', lazy=True))
+
+    def __repr__(self):
+      return self.name
 
 
 class Genre(db.Model):
@@ -140,7 +146,12 @@ def venues():
       "num_upcoming_shows": 0,
     }]
   }]
-  return render_template('pages/venues.html', areas=data);
+
+  states_query = db.session.query(Venue.state.distinct().label("state")).order_by(Venue.state)
+  states = [venue.state for venue in states_query.all()]
+  venues = Venue.query.order_by(Venue.city).all()
+
+  return render_template('pages/venues.html', states=states , venues=venues)
 
 @app.route('/venues/search', methods=['POST'])
 def search_venues():

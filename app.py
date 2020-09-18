@@ -23,15 +23,13 @@ import os
 #----------------------------------------------------------------------------#
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:aa00000000@localhost:5432/fyyur'
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 moment = Moment(app)
+app.config.from_object('config')
 
 
-
-SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
 
 # TODO: connect to a local postgresql database
 
@@ -257,6 +255,15 @@ def create_venue_form():
   form = VenueForm()
   genres = Genre.query.all()
   count = Genre.query.count()
+  if count == 0:
+    genres_list = ['Alternative','Blues','Classical' ,'Country' , 'Electronic', 'Folk' , 'Funk' ,'Hip-Hop' , 'Heavy Metal' ,'Instrumental' , 'Jazz' , 'Musical Theatre' ,'Pop' ,'Punk' , 'R&B' ,'Reggae' , 'Rock n Roll' , 'Soul' , 'Other']
+    for genre in genres_list:
+      temp = Genre(name=genre)
+      db.session.add(temp)
+    db.session.commit()
+    genres = Genre.query.all()
+    count = Genre.query.count()
+
   list_of_genres = []
   for i in range(0,count):
     list_of_genres.append((genres[i].id,genres[i].name))

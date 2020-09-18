@@ -40,6 +40,8 @@ app.config.from_object('config')
 venue_genres = db.Table('venue_genres' , db.Column('venue_id',db.ForeignKey('Venue.id'),primary_key=True)
                                     , db.Column('genre_id',db.ForeignKey('Genre.id'),primary_key=True))
 
+artist_genres = db.Table('artist_genres' , db.Column('artist_id',db.ForeignKey('Artist.id'),primary_key=True)
+                                    , db.Column('genre_id',db.ForeignKey('Genre.id'),primary_key=True))
 class Venue(db.Model):
     __tablename__ = 'Venue'
 
@@ -68,16 +70,18 @@ class Artist(db.Model):
     phone = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
+    website = db.Column(db.String(120))
+    seeking_venue = db.Column(db.Boolean(), default=False, nullable=True)
+    seeking_description = db.Column(db.String(500), nullable=True)
+    genres = db.relationship('Genre', secondary=venue_genres, backref=db.backref('artists', lazy=True))
+
 
 class Genre(db.Model):
   __tablename__ = 'Genre'
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String)
-
   def __repr__(self):
     return self.name
-
-
 
 
 

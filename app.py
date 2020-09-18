@@ -112,6 +112,18 @@ app.jinja_env.filters['datetime'] = format_datetime
 #----------------------------------------------------------------------------#
 # Controllers.
 #----------------------------------------------------------------------------#
+def model_search(form , model):
+  search_term = form.get('search_term', '')
+  search_pattern = "%" + search_term + "%"
+  if model == 'Venuet':
+    search_query = db.session.query(Venue).filter(Venue.name.ilike(search_pattern))
+  else:
+    search_query = db.session.query(Artist).filter(Artist.name.ilike(search_pattern))
+  results = search_query.all()
+  response = {}
+  response['count'] = search_query.count()
+  response['data'] = results
+  return response
 
 @app.route('/')
 def index():
@@ -167,14 +179,7 @@ def search_venues():
   #   }]
   # }
 
-  search_term = request.form.get('search_term', '')
-  search_pattern = "%"+search_term+"%"
-  search_query = db.session.query(Venue).filter(Venue.name.ilike(search_pattern))
-  results = search_query.all()
-  response = {}
-  response['count'] = search_query.count()
-  response['data'] = results
-  print(response)
+  response = model_search(form=request.form , model='Venue')
   return render_template('pages/search_venues.html', results=response, search_term=search_term)
 
 @app.route('/venues/<int:venue_id>')
@@ -365,6 +370,7 @@ def search_artists():
       "num_upcoming_shows": 0,
     }]
   }
+  response = model_search(form=request.form , model='Artist')
   return render_template('pages/search_artists.html', results=response, search_term=request.form.get('search_term', ''))
 
 @app.route('/artists/<int:artist_id>')

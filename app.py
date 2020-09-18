@@ -115,7 +115,7 @@ app.jinja_env.filters['datetime'] = format_datetime
 def model_search(form , model):
   search_term = form.get('search_term', '')
   search_pattern = "%" + search_term + "%"
-  if model == 'Venue'.lower():
+  if model.lower() == 'venue':
     search_query = db.session.query(Venue).filter(Venue.name.ilike(search_pattern))
   else:
     search_query = db.session.query(Artist).filter(Artist.name.ilike(search_pattern))

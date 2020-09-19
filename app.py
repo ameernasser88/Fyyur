@@ -50,7 +50,7 @@ class Venue(db.Model):
     city = db.Column(db.String(120) , nullable= False)
     state = db.Column(db.String(120) , nullable= False)
     address = db.Column(db.String(120) , nullable=False)
-    phone = db.Column(db.String(120) , nullable=False)
+    phone = db.Column(db.String(120) , nullable=True)
     image_link = db.Column(db.String(500), nullable=True)
     facebook_link = db.Column(db.String(120),nullable=True)
     website =  db.Column(db.String(120),nullable=True)
@@ -67,13 +67,13 @@ class Artist(db.Model):
     __tablename__ = 'Artist'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    city = db.Column(db.String(120))
-    state = db.Column(db.String(120))
-    phone = db.Column(db.String(120))
-    image_link = db.Column(db.String(500))
-    facebook_link = db.Column(db.String(120))
-    website = db.Column(db.String(120))
+    name = db.Column(db.String, nullable=False)
+    city = db.Column(db.String(120), nullable=False)
+    state = db.Column(db.String(120), nullable=False)
+    phone = db.Column(db.String(120), nullable=True)
+    image_link = db.Column(db.String(500), nullable=False)
+    facebook_link = db.Column(db.String(120), nullable=True)
+    website = db.Column(db.String(120) ,nullable=True)
     seeking_venue = db.Column(db.Boolean(), default=False, nullable=True)
     seeking_description = db.Column(db.String(500), nullable=True)
     genres = db.relationship('Genre', secondary=artist_genres, backref=db.backref('artists', lazy=True))
@@ -85,13 +85,18 @@ class Artist(db.Model):
 class Genre(db.Model):
   __tablename__ = 'Genre'
   id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String)
+  name = db.Column(db.String, nullable=False)
   def __repr__(self):
     return self.name
 
 
+class Show(db.Model):
+  __tablename__ = 'Show'
+  id = db.Column(db.Integer, primary_key=True)
+  artist_id = db.Column(db.Integer, db.ForeignKey('Artist.id'), nullable=False)
+  venue_id = db.Column(db.Integer, db.ForeignKey('Venue.id'), nullable=False)
+  start_time = db.Column(db.DateTime, nullable=False)
 
-    # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
 # TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
 
@@ -630,12 +635,21 @@ def create_shows():
 def create_show_submission():
   # called to create new shows in the db, upon submitting new show listing form
   # TODO: insert form data as a new Show record in the db, instead
-
-  # on successful db insert, flash success
-  flash('Show was successfully listed!')
-  # TODO: on unsuccessful db insert, flash an error instead.
-  # e.g., flash('An error occurred. Show could not be listed.')
-  # see: http://flask.pocoo.org/docs/1.0/patterns/flashing/
+  error = False
+  try:
+    form = ShowForm(request.form)
+    new_show = Show(artist_id=form.data['artist_id'],venue_id=form.data['venue_id'],start_time=form.data['start_time'])
+    db.session.add(new_show)
+    db.session.commit()
+    # on successful db insert, flash success
+    flash('Show was successfully listed!')
+  except:
+    error = True
+    db.session.rollback()
+    # TODO: on unsuccessful db insert, flash an error instead.
+    flash('An error occurred. Show could not be listed.')
+  finally:
+    db.session.close()
   return render_template('pages/home.html')
 
 @app.errorhandler(404)

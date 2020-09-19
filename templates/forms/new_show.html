@@ -7,18 +7,18 @@
       <div class="form-group">
         <label for="artist_id">Artist ID</label>
         <small>ID can be found on the Artist's Page</small>
-        {{ form.artist_id(class_ = 'form-control', autofocus = true) }}
+        {{ form.artist_id(class_ = 'form-control', autofocus = true , id='artist_id') }}
       </div>
       <div class="form-group">
         <label for="venue_id">Venue ID</label>
         <small>ID can be found on the Venue's Page</small>
-        {{ form.venue_id(class_ = 'form-control', autofocus = true) }}
+        {{ form.venue_id(class_ = 'form-control', autofocus = true , id='venue_id') }}
       </div>
       <div class="form-group">
           <label for="start_time">Start Time</label>
-          {{ form.start_time(class_ = 'form-control', placeholder='YYYY-MM-DD HH:MM', autofocus = true) }}
+          {{ form.start_time(class_ = 'form-control', placeholder='YYYY-MM-DD HH:MM', autofocus = true , id='start_time') }}
         </div>
-      <input type="submit" value="Create Venue" class="btn btn-primary btn-lg btn-block">
+      <input type="submit" value="Create Show" class="btn btn-primary btn-lg btn-block">
     </form>
   </div>
 {% endblock %}

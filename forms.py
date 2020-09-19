@@ -1,10 +1,10 @@
 from datetime import datetime
-from flask_wtf import Form
-from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField , BooleanField
+from flask_wtf import FlaskForm
+from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField , BooleanField , IntegerField
 from wtforms.validators import DataRequired, AnyOf, URL
 
 
-class ShowForm(Form):
+class ShowForm(FlaskForm):
     artist_id = StringField(
         'artist_id'
     )
@@ -17,7 +17,7 @@ class ShowForm(Form):
         default= datetime.today()
     )
 
-class VenueForm(Form):
+class VenueForm(FlaskForm):
     name = StringField(
         'name', validators=[DataRequired()]
     )
@@ -111,7 +111,7 @@ class VenueForm(Form):
         'seeking_description'
     )
 
-class ArtistForm(Form):
+class ArtistForm(FlaskForm):
     name = StringField(
         'name', validators=[DataRequired()]
     )
@@ -204,3 +204,8 @@ class ArtistForm(Form):
 
 
 # TODO IMPLEMENT NEW ARTIST FORM AND NEW SHOW FORM
+class ShowForm(FlaskForm):
+    artist_id = IntegerField('artist_id' , validators=[DataRequired()])
+    venue_id = IntegerField('venue_id', validators=[DataRequired()])
+    # Datetime field requires YYYY-MM-DD HH:MM:SS format so I used String field as I only want YYYY-MM-DD HH:MM
+    start_time = StringField('start_time', validators=[DataRequired()])

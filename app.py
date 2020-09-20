@@ -539,7 +539,7 @@ def edit_artist_submission(artist_id):
 def edit_venue(venue_id):
 
     venue = Venue.query.get(venue_id)
-    if not data:
+    if not venue:
         abort(404)
     form = VenueForm(obj=venue)
     genres = Genre.query.all()

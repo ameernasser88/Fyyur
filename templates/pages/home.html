@@ -22,4 +22,43 @@
 		<img id="front-splash" src="{{ url_for('static',filename='img/front-splash.jpg') }}" alt="Front Photo of Musical Band" />
 	</div>
 </div>
+
+{% if venues[0] %}
+<br>
+<br>
+<div class="row">
+	<h2 class="monospace">Recently added venues </h2>
+	<div class="row">
+		{%for venue in venues %}
+		<div class="col-sm-4">
+			<div class="tile tile-show">
+				<img src="{{ venue.image_link }}" alt="Venue Image" />
+				<h5><a href="/venues/{{ venue.id }}">{{ venue.name }}</a></h5>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+</div>
+{% endif %}
+
+{% if artists[0] %}
+<br>
+<br>
+<div class="row">
+	<h2 class="monospace">Recently added artists </h2>
+	<div class="row">
+		{%for artist in artists %}
+		<div class="col-sm-4">
+			<div class="tile tile-show">
+				<img src="{{ artist.image_link }}" alt="Artist Image" />
+				<h5><a href="/artists/{{ artist.id }}">{{ artist.name }}</a></h5>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+</div>
+{% endif %}
+
 {% endblock %}

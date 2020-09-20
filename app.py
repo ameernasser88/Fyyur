@@ -136,7 +136,9 @@ def model_search(form, model):
 
 @app.route('/')
 def index():
-    return render_template('pages/home.html')
+    recently_added_venues = Venue.query.order_by(Venue.id.desc()).limit(6)
+    recently_added_artists = Artist.query.order_by(Artist.id.desc()).limit(6)
+    return render_template('pages/home.html' , venues=recently_added_venues , artists=recently_added_artists)
 
 
 #  Venues

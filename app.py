@@ -426,7 +426,7 @@ def edit_artist_submission(artist_id):
         edited_artist.genres = genres
         db.session.commit()
         # on successful db insert, flash success
-        flash('Artist' + request.form['name'] + ' was successfully edited!')
+        flash('Artist ' + request.form['name'] + ' was successfully edited!')
 
     except:
         db.session.rollback()
@@ -486,7 +486,7 @@ def edit_venue_submission(venue_id):
         edited_venue.genres = genres
         db.session.commit()
         # on successful db insert, flash success
-        flash('Venue' + request.form['name'] + ' was successfully edited!')
+        flash('Venue ' + request.form['name'] + ' was successfully edited!')
 
     except:
 

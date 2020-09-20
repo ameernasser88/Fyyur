@@ -34,9 +34,11 @@ app.config.from_object('config')
 # Models.
 # ----------------------------------------------------------------------------#
 
+# Many to many relationship between venues and genres
 venue_genres = db.Table('venue_genres', db.Column('venue_id', db.ForeignKey('Venue.id'), primary_key=True)
                         , db.Column('genre_id', db.ForeignKey('Genre.id'), primary_key=True))
 
+# Many to many relationship between asrtists and genres
 artist_genres = db.Table('artist_genres', db.Column('artist_id', db.ForeignKey('Artist.id'), primary_key=True)
                          , db.Column('genre_id', db.ForeignKey('Genre.id'), primary_key=True))
 
@@ -55,6 +57,7 @@ class Venue(db.Model):
     website = db.Column(db.String(120), nullable=True)
     seeking_talent = db.Column(db.Boolean(), default=False, nullable=True)
     seeking_description = db.Column(db.String(500), nullable=True)
+    # many to many relationship
     genres = db.relationship('Genre', secondary=venue_genres, backref=db.backref('venues', lazy=True))
 
     def __repr__(self):
@@ -76,6 +79,7 @@ class Artist(db.Model):
     website = db.Column(db.String(120), nullable=True)
     seeking_venue = db.Column(db.Boolean(), default=False, nullable=False)
     seeking_description = db.Column(db.String(500), nullable=True)
+    # many to many relationship
     genres = db.relationship('Genre', secondary=artist_genres, backref=db.backref('artists', lazy=True))
 
     def __repr__(self):
@@ -120,6 +124,8 @@ app.jinja_env.filters['datetime'] = format_datetime
 # ----------------------------------------------------------------------------#
 # Controllers.
 # ----------------------------------------------------------------------------#
+
+# search function , used to both artist search controller and venue search controller , it queries either table to find a match between search term and name column
 def model_search(form, model):
     search_term = form.get('search_term', '')
     search_pattern = "%" + search_term + "%"
@@ -140,9 +146,9 @@ def index():
     recently_added_artists = Artist.query.order_by(Artist.id.desc()).limit(6)
     current_time = datetime.utcnow()
     upcoming_shows_query = Show.query.filter(Show.start_time >= current_time).order_by(Show.start_time).limit(6)
-    shows = []
+    upcoming_shows = []
     for show in upcoming_shows_query:
-        shows.append({"venue_id": show.venue_id,
+        upcoming_shows.append({"venue_id": show.venue_id,
                      "venue_name": Venue.query.get(show.venue_id).name,
                      "artist_id": show.artist_id,
                      "artist_name": Artist.query.get(show.artist_id).name,
@@ -223,6 +229,7 @@ def show_venue(venue_id):
 @app.route('/venues/create', methods=['GET'])
 def create_venue_form():
     form = VenueForm()
+    #pre populate the genre multipleselect field with genres from database table
     genres = Genre.query.all()
     count = Genre.query.count()
     if count == 0:

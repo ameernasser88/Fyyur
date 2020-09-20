@@ -10,6 +10,7 @@
 		<p class="subtitle">
 			ID: {{ venue.id }}
 		</p>
+
 		<div class="genres">
 			{% for genre in venue.genres %}
 			<span class="genre">{{ genre }}</span>
@@ -42,6 +43,12 @@
 			<i class="fas fa-moon"></i> Not currently seeking talent
 		</p>
 		{% endif %}
+     <form action="/venues/{{venue.id}}/delete" method="POST">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <p class="subtitle">
+			Deleting a venue will delete all of it's associated shows.
+		</p>
+    </form>
 	</div>
 	<div class="col-sm-6">
         {% if venue.image_link %}

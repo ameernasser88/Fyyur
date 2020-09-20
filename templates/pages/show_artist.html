@@ -39,6 +39,12 @@
 			<i class="fas fa-moon"></i> Not currently seeking performance venues
 		</p>
 		{% endif %}
+     <form action="/artists/{{artist.id}}/delete" method="POST">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <p class="subtitle">
+			Deleting an artist will delete all of the associated shows.
+		</p>
+    </form>
 	</div>
 	<div class="col-sm-6">
 		<img src="{{ artist.image_link }}" alt="Venue Image" />

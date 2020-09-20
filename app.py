@@ -71,10 +71,10 @@ class Artist(db.Model):
     city = db.Column(db.String(120), nullable=False)
     state = db.Column(db.String(120), nullable=False)
     phone = db.Column(db.String(120), nullable=True)
-    image_link = db.Column(db.String(500), nullable=False)
+    image_link = db.Column(db.String(500), nullable=True)
     facebook_link = db.Column(db.String(120), nullable=True)
     website = db.Column(db.String(120), nullable=True)
-    seeking_venue = db.Column(db.Boolean(), default=False, nullable=True)
+    seeking_venue = db.Column(db.Boolean(), default=False, nullable=False)
     seeking_description = db.Column(db.String(500), nullable=True)
     genres = db.relationship('Genre', secondary=artist_genres, backref=db.backref('artists', lazy=True))
 
@@ -266,14 +266,25 @@ def create_venue_submission():
     return render_template('pages/home.html')
 
 
-@app.route('/venues/<venue_id>', methods=['DELETE'])
+@app.route('/venues/<venue_id>/delete', methods=['POST'])
 def delete_venue(venue_id):
-    # TODO: Complete this endpoint for taking a venue_id, and using
-    # SQLAlchemy ORM to delete a record. Handle cases where the session commit could fail.
+    try:
+        venue = Venue.query.get(venue_id)
+        shows = Show.query.filter_by(venue_id=venue_id)
+        for show in shows:
+            db.session.delete(show)
+        db.session.delete(venue)
+        db.session.commit()
+        # on successful db delete, flash success
+        flash('Venue ' + venue.name + ' was successfully deleted!')
+    except:
+        db.session.rollback()
+        # TODO: on unsuccessful db delete, flash an error instead.
+        flash('An error occurred. Artist ' + venue.name + ' could not be deleted')
+    finally: 
+        db.session.close()
+    return render_template('pages/home.html')
 
-    # BONUS CHALLENGE: Implement a button to delete a Venue on a Venue Page, have it so that
-    # clicking that button delete it from the db then redirect the user to the homepage
-    return None
 
 
 #  Artists
@@ -336,7 +347,24 @@ def show_artist(artist_id):
                                     })
     return render_template('pages/show_artist.html', artist=artist)
 
-
+@app.route('/artists/<artist_id>/delete', methods=['POST'])
+def delete_artist(artist_id):
+    try:
+        artist = Artist.query.get(artist_id)
+        shows = Show.query.filter_by(artist_id=artist_id)
+        for show in shows:
+            db.session.delete(show)
+        db.session.delete(artist)
+        db.session.commit()
+        # on successful db delete, flash success
+        flash('Artist ' + artist.name + ' was successfully deleted!')
+    except:
+        db.session.rollback()
+        # TODO: on unsuccessful db delete, flash an error instead.
+        flash('An error occurred. Artist ' + artist.name + ' could not be deleted')
+    finally:
+        db.session.close()
+    return render_template('pages/home.html')
 #  Update
 #  ----------------------------------------------------------------
 @app.route('/artists/<int:artist_id>/edit', methods=['GET'])
@@ -496,7 +524,7 @@ def create_artist_submission():
                             , phone=form.data['phone'] if form.data['phone'] != '' else None
                             , image_link=form.data['image_link'] if form.data['image_link'] != '' else None
                             , website=form.data['website'] if form.data['website'] != '' else None
-                            , seeking_talent=form.data['seeking_venue']
+                            , seeking_venue=form.data['seeking_venue']
                             , seeking_description=form.data['seeking_description'] if form.data['seeking_description'] != '' else None
                             )
         genres = []

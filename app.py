@@ -480,6 +480,8 @@ def show_artist(artist_id):
 @app.route('/artists/<int:artist_id>/edit', methods=['GET'])
 def edit_artist(artist_id):
     artist = Artist.query.get(artist_id)
+    if not artist:
+        abort(404)
     form = ArtistForm(obj=artist)
     genres = Genre.query.all()
     count = Genre.query.count()
@@ -537,6 +539,8 @@ def edit_artist_submission(artist_id):
 def edit_venue(venue_id):
 
     venue = Venue.query.get(venue_id)
+    if not data:
+        abort(404)
     form = VenueForm(obj=venue)
     genres = Genre.query.all()
     count = Genre.query.count()

@@ -61,4 +61,26 @@
 </div>
 {% endif %}
 
+{% if shows[0] %}
+<br>
+<br>
+<div class="row">
+	<h2 class="monospace">Upcoming Shows </h2>
+	<div class="row">
+
+  {%for show in shows %}
+    <div class="col-sm-4">
+        <div class="tile tile-show">
+            <img src="{{ show.artist_image_link }}" alt="Artist Image" />
+            <h4>{{ show.start_time|datetime('full') }}</h4>
+            <h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
+            <p>playing at</p>
+            <h5><a href="/venues/{{ show.venue_id }}">{{ show.venue_name }}</a></h5>
+        </div>
+    </div>
+    {% endfor %}
+	</div>
+
+</div>
+{% endif %}
 {% endblock %}

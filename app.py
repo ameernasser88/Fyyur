@@ -138,7 +138,18 @@ def model_search(form, model):
 def index():
     recently_added_venues = Venue.query.order_by(Venue.id.desc()).limit(6)
     recently_added_artists = Artist.query.order_by(Artist.id.desc()).limit(6)
-    return render_template('pages/home.html' , venues=recently_added_venues , artists=recently_added_artists)
+    current_time = datetime.utcnow()
+    upcoming_shows_query = Show.query.filter(Show.start_time >= current_time).order_by(Show.start_time).limit(6)
+    shows = []
+    for show in upcoming_shows_query:
+        shows.append({"venue_id": show.venue_id,
+                     "venue_name": Venue.query.get(show.venue_id).name,
+                     "artist_id": show.artist_id,
+                     "artist_name": Artist.query.get(show.artist_id).name,
+                     "artist_image_link": Artist.query.get(show.artist_id).image_link,
+                     "start_time": show.start_time
+                     })
+    return render_template('pages/home.html' , venues=recently_added_venues , artists=recently_added_artists,shows=shows)
 
 
 #  Venues
@@ -265,7 +276,7 @@ def create_venue_submission():
         flash('An error occurred. Venue ' + request.form['name'] + ' could not be listed.')
     finally:
         db.session.close()
-    return render_template('pages/home.html')
+    return redirect(url_for('index'))
 
 
 @app.route('/venues/<venue_id>/delete', methods=['POST'])
@@ -285,7 +296,7 @@ def delete_venue(venue_id):
         flash('An error occurred. Artist ' + venue.name + ' could not be deleted')
     finally: 
         db.session.close()
-    return render_template('pages/home.html')
+    return redirect(url_for('index'))
 
 
 
@@ -366,7 +377,7 @@ def delete_artist(artist_id):
         flash('An error occurred. Artist ' + artist.name + ' could not be deleted')
     finally:
         db.session.close()
-    return render_template('pages/home.html')
+    return redirect(url_for('index'))
 #  Update
 #  ----------------------------------------------------------------
 @app.route('/artists/<int:artist_id>/edit', methods=['GET'])
@@ -546,7 +557,7 @@ def create_artist_submission():
     finally:
         db.session.close()
 
-    return render_template('pages/home.html')
+    return redirect(url_for('index'))
 
 
 #  Shows
@@ -556,7 +567,6 @@ def create_artist_submission():
 def shows():
     shows = Show.query.order_by('start_time').all()
     data = []
-    count = 0
     for show in shows:
         data.append({"venue_id": show.venue_id,
                      "venue_name": Venue.query.get(show.venue_id).name,
@@ -594,7 +604,7 @@ def create_show_submission():
         flash('An error occurred. Show could not be listed.')
     finally:
         db.session.close()
-    return render_template('pages/home.html')
+    return redirect(url_for('index'))
 
 
 @app.errorhandler(404)

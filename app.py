@@ -60,7 +60,7 @@ class Venue(db.Model):
     def __repr__(self):
         return self.name
 
-    # TODO: implement any missing fields, as a database migration using Flask-Migrate
+
 
 
 class Artist(db.Model):
@@ -99,7 +99,7 @@ class Show(db.Model):
     start_time = db.Column(db.DateTime, nullable=False)
 
 
-# TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
+
 
 # ----------------------------------------------------------------------------#
 # Filters.
@@ -161,9 +161,6 @@ def search_venues():
 
 @app.route('/venues/<int:venue_id>')
 def show_venue(venue_id):
-    # shows the venue page with the given venue_id
-    # TODO: replace with real venue data from the venues table, using venue_id
-
     venue_query = Venue.query.get(venue_id)
     if not venue_query:
         abort(404)
@@ -298,8 +295,6 @@ def search_artists():
 
 @app.route('/artists/<int:artist_id>')
 def show_artist(artist_id):
-    # shows the venue page with the given venue_id
-    # TODO: replace with real venue data from the venues table, using venue_id
     artist_query = Artist.query.get(artist_id)
     if not artist_query:
         abort(404)

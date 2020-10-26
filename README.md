@@ -96,7 +96,6 @@ flask run
 set FLASK_APP=flaskr
 set FLASK_ENV=development
 flask run
-```app.py
   ```
 
 4. Navigate to Home page [http://localhost:5000](http://localhost:5000)

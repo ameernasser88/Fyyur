@@ -1,6 +1,6 @@
 Fyyur
 -----
-Final project in course 1 ( Data modeling for the web ) in udacity's advanced web development nanodegree program
+Final project for course 1 ( Data modeling for the web ) in udacity's advanced web development nanodegree program
 
 ### Introduction
 
